@@ -2081,10 +2081,10 @@
         "name": "RFE logReg no penalty",
         "params": {
           "n_features_to_select": [
-            5.0
+            5
           ],
           "step": [
-            1.0
+            1
           ]
         },
         "supportsSampleWeights": false,
