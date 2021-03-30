@@ -1303,7 +1303,7 @@
       "max_iter": 1000,
       "tol": 0.001,
       "n_jobs": 2,
-      "enabled": true
+      "enabled": false
     },
     "knn": {
       "k": {
@@ -1755,7 +1755,7 @@
       "seed": 1337,
       "enable_early_stopping": true,
       "early_stopping_rounds": 5,
-      "enabled": true
+      "enabled": false
     },
     "deep_learning_sparkling": {
       "enabled": false,
@@ -2073,7 +2073,13 @@
       "epsilon": 1.0E-6,
       "optimizer": "BFGS"
     },
-    "custom_python": [],
+    "custom_python": [
+      {
+        "enabled": false,
+        "code": "# This sample code uses a standard scikit-learn algorithm, the Adaboost classifier.\n\n# Your code must create a \u0027clf\u0027 variable. This clf must be a scikit-learn compatible\n# classifier, ie, it should:\n#  1. have at least fit(X,y) and predict(X) methods\n#  2. inherit sklearn.base.BaseEstimator\n#  3. handle the attributes in the __init__ function\n#  4. have a classes_ attribute\n#  5. have a predict_proba method (optional)\n#     See: https://doc.dataiku.com/dss/latest/machine-learning/custom-models.html\n\nfrom sklearn.ensemble import AdaBoostClassifier\n\nclf \u003d AdaBoostClassifier(n_estimators\u003d20)\n",
+        "name": "Custom Python model"
+      }
+    ],
     "plugin_python": {
       "CustomPyPredAlgo_custom-logistic-regression_non-pen-log-reg": {
         "pluginId": "custom-logistic-regression",
