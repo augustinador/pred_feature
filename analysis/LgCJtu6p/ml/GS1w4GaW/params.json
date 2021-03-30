@@ -105,7 +105,7 @@
         "customProcessorWantsMatrix": false,
         "sendToInput": "main"
       },
-      "R044_Quantity_sum": {
+      "R606_Quantity_sum": {
         "generate_derivative": true,
         "numerical_handling": "REGULAR",
         "missing_handling": "IMPUTE",
@@ -208,7 +208,7 @@
         "customProcessorWantsMatrix": false,
         "sendToInput": "main"
       },
-      "R606_Quantity_sum": {
+      "R044_Quantity_sum": {
         "generate_derivative": true,
         "numerical_handling": "REGULAR",
         "missing_handling": "IMPUTE",
@@ -365,6 +365,7 @@
         "max_nb_categories": 100,
         "max_cat_safety": 200,
         "nb_bins_hashing": 1048576,
+        "hash_whole_categories": false,
         "dummy_drop": "NONE",
         "role": "REJECT",
         "type": "CATEGORY",
@@ -1734,10 +1735,10 @@
           "reg_gamma": {
             "enabled": false
           },
-          "binary_logistic": {
+          "multi_softprob": {
             "enabled": false
           },
-          "multi_softprob": {
+          "binary_logistic": {
             "enabled": false
           }
         }
@@ -2074,29 +2075,29 @@
     },
     "custom_python": [],
     "plugin_python": {
-      "CustomPyPredAlgo_custom-logistic-regression_rfe-non-pen-logreg": {
-        "pluginId": "custom-logistic-regression",
-        "pluginVersion": "0.0.1",
-        "elementId": "rfe-non-pen-logreg",
-        "name": "RFE logReg no penalty",
-        "params": {
-          "n_features_to_select": [
-            5
-          ],
-          "step": [
-            1
-          ]
-        },
-        "supportsSampleWeights": false,
-        "acceptsSparseMatrix": false,
-        "enabled": false
-      },
       "CustomPyPredAlgo_custom-logistic-regression_non-pen-log-reg": {
         "pluginId": "custom-logistic-regression",
         "pluginVersion": "0.0.1",
         "elementId": "non-pen-log-reg",
         "name": "LogReg no penalty",
         "params": {},
+        "supportsSampleWeights": false,
+        "acceptsSparseMatrix": false,
+        "enabled": false
+      },
+      "CustomPyPredAlgo_custom-logistic-regression_rfe-non-pen-logreg": {
+        "pluginId": "custom-logistic-regression",
+        "pluginVersion": "0.0.1",
+        "elementId": "rfe-non-pen-logreg",
+        "name": "RFE logReg no penalty",
+        "params": {
+          "step": [
+            1
+          ],
+          "n_features_to_select": [
+            5
+          ]
+        },
         "supportsSampleWeights": false,
         "acceptsSparseMatrix": false,
         "enabled": false
@@ -2134,7 +2135,9 @@
       "nIter": 0,
       "nIterRandom": 10,
       "timeout": 0,
-      "nJobs": -1
+      "nJobs": -1,
+      "distributed": false,
+      "nContainers": 4
     },
     "metrics": {
       "evaluationMetric": "ROC_AUC",
@@ -2152,8 +2155,44 @@
     "custom_mllib": [],
     "max_ensemble_nodes_serialized": 6000
   },
+  "assertionsParams": {
+    "assertions": []
+  },
   "id": "GS1w4GaW",
   "initiator": "admin",
+  "diagnosticsSettings": {
+    "enabled": true,
+    "settings": [
+      {
+        "type": "ML_DIAGNOSTICS_DATASET_SANITY_CHECKS",
+        "enabled": true
+      },
+      {
+        "type": "ML_DIAGNOSTICS_MODELING_PARAMETERS",
+        "enabled": true
+      },
+      {
+        "type": "ML_DIAGNOSTICS_RUNTIME",
+        "enabled": true
+      },
+      {
+        "type": "ML_DIAGNOSTICS_TRAINING_OVERFIT",
+        "enabled": true
+      },
+      {
+        "type": "ML_DIAGNOSTICS_LEAKAGE_DETECTION",
+        "enabled": true
+      },
+      {
+        "type": "ML_DIAGNOSTICS_MODEL_CHECK",
+        "enabled": true
+      },
+      {
+        "type": "ML_DIAGNOSTICS_ML_ASSERTIONS",
+        "enabled": true
+      }
+    ]
+  },
   "taskType": "PREDICTION",
   "name": "Predict failure_bin",
   "backendType": "PY_MEMORY",
@@ -2244,5 +2283,6 @@
       "withinFirstN": -1,
       "maxReadUncompressedBytes": -1
     }
-  }
+  },
+  "labels": []
 }
