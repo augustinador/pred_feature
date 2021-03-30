@@ -28,7 +28,7 @@
         "enabled": false,
         "rules": []
       },
-      "samplingMethod": "FULL",
+      "samplingMethod": "HEAD_SEQUENTIAL",
       "maxRecords": 100000,
       "targetRatio": 0.02,
       "withinFirstN": -1,
@@ -37,7 +37,7 @@
     "ssdTrainingRatio": 0.8,
     "ssdSeed": 1337,
     "testOnLargerValues": true,
-    "kfold": true,
+    "kfold": false,
     "nFolds": 5,
     "instanceIdRefresher": 0,
     "subSamplingSeed": 1337
