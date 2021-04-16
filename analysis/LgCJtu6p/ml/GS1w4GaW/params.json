@@ -13,7 +13,7 @@
   },
   "guessPolicy": "PERFORMANCE",
   "splitParams": {
-    "ttPolicy": "SPLIT_SINGLE_DATASET",
+    "ttPolicy": "EXPLICIT_FILTERING_TWO_DATASETS",
     "ssdSplitMode": "RANDOM",
     "splitBeforePrepare": true,
     "ssdSelection": {
@@ -37,6 +37,103 @@
     "ssdTrainingRatio": 0.81,
     "ssdSeed": 1337,
     "testOnLargerValues": true,
+    "efsdTrain": {
+      "selection": {
+        "useMemTable": false,
+        "filter": {
+          "distinct": false,
+          "enabled": false
+        },
+        "partitionSelectionMethod": "ALL",
+        "latestPartitionsN": 1,
+        "ordering": {
+          "enabled": false,
+          "rules": []
+        },
+        "samplingMethod": "HEAD_SEQUENTIAL",
+        "maxRecords": 100000,
+        "targetRatio": 0.02,
+        "withinFirstN": -1,
+        "maxReadUncompressedBytes": -1
+      },
+      "filter": {
+        "distinct": false,
+        "enabled": true,
+        "uiData": {
+          "mode": "\u0026\u0026",
+          "conditions": [
+            {
+              "input": "Asset",
+              "operator": "contains",
+              "col": "failure_bin",
+              "string": "A",
+              "num": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "efsdTest": {
+      "selection": {
+        "useMemTable": false,
+        "filter": {
+          "distinct": false,
+          "enabled": false
+        },
+        "partitionSelectionMethod": "ALL",
+        "latestPartitionsN": 1,
+        "ordering": {
+          "enabled": false,
+          "rules": []
+        },
+        "samplingMethod": "HEAD_SEQUENTIAL",
+        "maxRecords": 100000,
+        "targetRatio": 0.02,
+        "withinFirstN": -1,
+        "maxReadUncompressedBytes": -1
+      }
+    },
+    "eftdTrain": {
+      "datasetSmartName": "Asset_modelisation_table",
+      "selection": {
+        "useMemTable": false,
+        "filter": {
+          "distinct": false,
+          "enabled": false
+        },
+        "partitionSelectionMethod": "ALL",
+        "latestPartitionsN": 1,
+        "ordering": {
+          "enabled": false,
+          "rules": []
+        },
+        "samplingMethod": "HEAD_SEQUENTIAL",
+        "maxRecords": 100000,
+        "targetRatio": 0.02,
+        "withinFirstN": -1,
+        "maxReadUncompressedBytes": -1
+      }
+    },
+    "eftdTest": {
+      "selection": {
+        "useMemTable": false,
+        "filter": {
+          "distinct": false,
+          "enabled": false
+        },
+        "partitionSelectionMethod": "ALL",
+        "latestPartitionsN": 1,
+        "ordering": {
+          "enabled": false,
+          "rules": []
+        },
+        "samplingMethod": "HEAD_SEQUENTIAL",
+        "maxRecords": 100000,
+        "targetRatio": 0.02,
+        "withinFirstN": -1,
+        "maxReadUncompressedBytes": -1
+      }
+    },
     "kfold": false,
     "nFolds": 5,
     "instanceIdRefresher": 0,
@@ -2129,11 +2226,12 @@
     },
     "grid_search": true,
     "gridSearchParams": {
-      "mode": "KFOLD",
+      "mode": "CUSTOM",
       "splitRatio": 0.8,
       "shuffleIterations": 1,
       "nFolds": 3,
       "stratified": true,
+      "code": "# Define an object named cv that follows the scikit-learn splitter protocol\n# This example uses the \u0027repeated K-fold\u0027 splitter of scikit-learn\nfrom sklearn.model_selection import RepeatedKFold\n\ncv \u003d RepeatedKFold(n_splits\u003d3, n_repeats\u003d5)",
       "strategy": "GRID",
       "bayesianOptimizer": "SCIKIT_OPTIMIZE",
       "randomized": true,
