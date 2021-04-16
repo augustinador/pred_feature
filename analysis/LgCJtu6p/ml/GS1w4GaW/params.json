@@ -2231,7 +2231,7 @@
       "shuffleIterations": 1,
       "nFolds": 3,
       "stratified": true,
-      "code": "# Define an object named cv that follows the scikit-learn splitter protocol\n# This example uses the \u0027repeated K-fold\u0027 splitter of scikit-learn\nfrom sklearn.model_selection import RepeatedKFold\n\ncv \u003d RepeatedKFold(n_splits\u003d3, n_repeats\u003d5)",
+      "code": "# Define an object named cv that follows the scikit-learn splitter protocol\n# This example uses the \u0027repeated K-fold\u0027 splitter of scikit-learn\n#from sklearn.model_selection import RepeatedKFold\n\n\n\nfrom sklearn.model_selection import GroupKFold\n\n\n\ncv \u003d GroupKFold(n_splits\u003d3)\n\n#group_kfold.get_n_splits(X, y, groups)",
       "strategy": "GRID",
       "bayesianOptimizer": "SCIKIT_OPTIMIZE",
       "randomized": true,
