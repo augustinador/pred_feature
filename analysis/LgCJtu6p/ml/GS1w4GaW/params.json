@@ -13,7 +13,7 @@
   },
   "guessPolicy": "PERFORMANCE",
   "splitParams": {
-    "ttPolicy": "EXPLICIT_FILTERING_TWO_DATASETS",
+    "ttPolicy": "SPLIT_SINGLE_DATASET",
     "ssdSplitMode": "RANDOM",
     "splitBeforePrepare": true,
     "ssdSelection": {
