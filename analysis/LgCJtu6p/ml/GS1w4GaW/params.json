@@ -1183,7 +1183,7 @@
           }
         }
       },
-      "enabled": true
+      "enabled": false
     },
     "decision_tree_regression": {
       "max_depth": {
@@ -1460,7 +1460,7 @@
         }
       },
       "n_jobs": 2,
-      "enabled": true
+      "enabled": false
     },
     "neural_network": {
       "layer_sizes": {
@@ -2232,7 +2232,7 @@
       "nFolds": 3,
       "stratified": true,
       "code": "# Define an object named cv that follows the scikit-learn splitter protocol\n# This example uses the \u0027repeated K-fold\u0027 splitter of scikit-learn\n#from sklearn.model_selection import RepeatedKFold\n\n\n\nfrom sklearn.model_selection import GroupKFold\n\n\n\ncv \u003d GroupKFold(n_splits\u003d3)\n\n\ngroups \u003d [0,1]\n\n#group_kfold.get_n_splits(X, y, groups)",
-      "strategy": "BAYESIAN",
+      "strategy": "RANDOM",
       "bayesianOptimizer": "SCIKIT_OPTIMIZE",
       "randomized": true,
       "seed": 0,
